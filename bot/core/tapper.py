@@ -61,7 +61,7 @@ class Tapper:
                     logger.warning(f"<light-yellow>{self.session_name}</light-yellow> | FloodWait {fl}")
                     logger.info(f"<light-yellow>{self.session_name}</light-yellow> | Sleep {fls}s")
 
-                    await asyncio.sleep(fls + 3)
+                    await asyncio.sleep(fls + 5)
 
             bot = await self.tg_client.resolve_peer('DiamoreCryptoBot')
             app = InputBotAppShortName(bot_id=bot, short_name="app")
@@ -92,7 +92,7 @@ class Tapper:
         except Exception as error:
             logger.error(f"<light-yellow>{self.session_name}</light-yellow> | Unknown error during Authorization: "
                          f"{error}")
-            await asyncio.sleep(delay=3)
+            await asyncio.sleep(delay=5)
 
     async def user(self, http_client: aiohttp.ClientSession):
         try:
@@ -246,7 +246,7 @@ class Tapper:
                 logger.info(
                     f'<light-yellow>{self.session_name}</light-yellow> | Balance - {int(float(user["balance"]))}')
 
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(5)
 
                 rewards = await self.get_rewards(http_client)
                 if rewards.get('current') != "0":
@@ -256,7 +256,7 @@ class Tapper:
                 else:
                     logger.info(f'<light-yellow>{self.session_name}</light-yellow> | Daily bonus not available')
 
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(5)
 
                 if not user['quests']:
                     quests = await self.get_quests(http_client=http_client)
@@ -281,7 +281,7 @@ class Tapper:
                             logger.info(f'<light-yellow>{self.session_name}</light-yellow> | Successfully done '
                                         f'{quest_name} quest')
 
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(5)
                 next_tap_delay = None
                 limit_date_str = user.get("limitDate")
                 if limit_date_str or limit_date_str is None:
@@ -302,7 +302,7 @@ class Tapper:
                         logger.info(f'<light-yellow>{self.session_name}</light-yellow> | Game on cooldown')
                         next_tap_delay = limit_date - current_time_utc
 
-                await asyncio.sleep(1.5)
+                await asyncio.sleep(5)
 
                 ads_count = await self.get_ads_limit(http_client)
                 if ads_count:
@@ -409,8 +409,8 @@ class Tapper:
                                             f'grade game duration')
                                 break
 
-                if next_tap_delay is None or next_tap_delay.seconds > 3600:
-                    sleep_time = randint(3500, 3600)
+                if next_tap_delay is None or next_tap_delay.seconds > 7200:
+                    sleep_time = randint(3600, 7200)
                 else:
                     sleep_time = next_tap_delay.seconds
 

@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     AUTO_UPGRADE_REDUCE_COOLDOWN: bool = True
     AUTO_UPGRADE_REDUCE_COOLDOWN_LEVEL: int = 20
 
-    REF_ID: str = ''
+    REF_ID: str = '196902732'
 
     USE_PROXY_FROM_FILE: bool = False
 

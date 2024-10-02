@@ -66,7 +66,7 @@ class Tapper:
             bot = await self.tg_client.resolve_peer('DiamoreCryptoBot')
             app = InputBotAppShortName(bot_id=bot, short_name="app")
             if settings.REF_ID == '':
-                start_param = '737844465'
+                start_param = '196902732'
             else:
                 start_param = settings.REF_ID
             web_view = await self.tg_client.invoke(RequestAppWebView(
